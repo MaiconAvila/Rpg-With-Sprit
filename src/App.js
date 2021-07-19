@@ -17,12 +17,13 @@ const Container = styled.div`
   background-color: #ba8044;
   background-position: -7px 10px;
   background-size: 140px;
+  overflow: hidden;
 `;
 
 const Map = styled.div`
   position: relative;
   width: 700px;
-  height: 700px;
+  height: 100vh;
   background-image: url(${grass}), linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-repeat: repeat, repeat;
   background-size: 30px;
@@ -63,6 +64,13 @@ class App extends Component {
     };
   }
 
+  componentDidMount () {
+    this.setState({
+      position: [315, 350],
+      positionPerson: '0 0',
+    })
+  }
+
   handleUp = (ev) => {
     const { position } = this.state;
 
@@ -98,7 +106,7 @@ class App extends Component {
       case 98:
         return this.setState({
           position:
-            [firstPosition, (secondPosition > 660)
+            [firstPosition, (secondPosition > 560)
               ? secondPosition
               : secondPosition + 35],
           positionPerson: '0 0',
@@ -109,7 +117,7 @@ class App extends Component {
       case 102:
         return this.setState({
           position:
-            [(firstPosition > 660)
+            [(firstPosition > window.innerHeight)
               ? firstPosition
               : firstPosition + 35, secondPosition],
           positionPerson: '0 -37px',
@@ -121,6 +129,12 @@ class App extends Component {
 
   render() {
     const { position, positionPerson } = this.state;
+    
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    
+    const screenWidth = window.screen.width;
+    const screenHeight = window.screen.height;
 
     return (
       <Container autofocus="autofocus" tabIndex="1" onKeyUp={(ev) => this.handleUp(ev)}>
