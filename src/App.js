@@ -129,12 +129,6 @@ class App extends Component {
 
   render() {
     const { position, positionPerson } = this.state;
-    
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-    
-    const screenWidth = window.screen.width;
-    const screenHeight = window.screen.height;
 
     return (
       <Container autofocus="autofocus" tabIndex="1" onKeyUp={(ev) => this.handleUp(ev)}>
